@@ -14,14 +14,19 @@ BACKEND_DIR = ROOT_DIR / "backend"
 if str(BACKEND_DIR) not in sys.path:
     sys.path.insert(0, str(BACKEND_DIR))
 
+import shutil
+
 # Ensure database path is set for serverless execution
 if "DATABASE_URL" not in os.environ:
-    # Prefer pre-seeded SQLite database in backend/data/app.db
+    # Use writable /tmp directory for serverless execution
+    tmp_db = Path("/tmp/app.db")
     db_file = BACKEND_DIR / "data" / "app.db"
-    if db_file.exists():
-        os.environ["DATABASE_URL"] = f"sqlite:///{db_file.as_posix()}"
-    else:
-        os.environ["DATABASE_URL"] = "sqlite:////tmp/app.db"
+    if db_file.exists() and not tmp_db.exists():
+        try:
+            shutil.copyfile(db_file, tmp_db)
+        except Exception:
+            pass
+    os.environ["DATABASE_URL"] = f"sqlite:///{tmp_db.as_posix()}"
 
 # Force production environment in Vercel
 os.environ.setdefault("APP_ENV", "production")

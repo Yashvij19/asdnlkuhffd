@@ -1,0 +1,123 @@
+/* motion.css - Defined in docs/animation.md */
+:root {
+  /* durations */
+  --dur-instant: 0ms;
+  --dur-fast: 100ms;
+  --dur-base: 150ms;
+  --dur-slow: 250ms;
+  --dur-chart: 400ms;
+
+  /* easing */
+  --ease-standard: cubic-bezier(0.2, 0, 0, 1);   /* default */
+  --ease-in: cubic-bezier(0.4, 0, 1, 1);          /* exits */
+  --ease-linear: linear;                          /* spinners, pulses */
+
+  /* distances */
+  --move-xs: 4px;
+  --move-sm: 8px;
+
+  /* press */
+  --press-scale: 0.98;
+}
+
+/* Reduced motion: remove movement, keep instant state changes */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --dur-fast: 0ms;
+    --dur-base: 0ms;
+    --dur-slow: 0ms;
+    --dur-chart: 0ms;
+    --move-xs: 0px;
+    --move-sm: 0px;
+    --press-scale: 1;
+  }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Keyframes */
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fade-out {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+@keyframes pop-in {
+  from {
+    opacity: 0;
+    transform: translateY(calc(var(--move-xs) * -1));
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pop-out {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(calc(var(--move-xs) * -1));
+  }
+}
+
+@keyframes rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(var(--move-sm));
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes sheet-in {
+  from { transform: translateY(100%); }
+  to { transform: translateY(0); }
+}
+
+@keyframes sheet-out {
+  from { transform: translateY(0); }
+  to { transform: translateY(100%); }
+}
+
+@keyframes skeleton-pulse {
+  0%, 100% { opacity: 0.55; }
+  50% { opacity: 0.95; }
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Utility animation classes */
+.animate-fade-in {
+  animation: fade-in var(--dur-base) var(--ease-standard) forwards;
+}
+
+.animate-pop-in {
+  animation: pop-in var(--dur-fast) var(--ease-standard) forwards;
+}
+
+.animate-rise-in {
+  animation: rise-in var(--dur-base) var(--ease-standard) forwards;
+}
+
+.animate-skeleton {
+  animation: skeleton-pulse 1200ms var(--ease-linear) infinite;
+}
+
+.animate-spin-fast {
+  animation: spin 700ms var(--ease-linear) infinite;
+}

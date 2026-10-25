@@ -1,0 +1,7 @@
+{
+  "seed_actuals.json": "4cc913e5f09346cb74f6634376b6008fc0e6f8132b421a3a1639001bb0570828",
+  "seed_forecasts.json": "ba63f3d38345d985444e3dd00f7743322d5f6df2ed61593dac970dd25d49fd91",
+  "actuals_count": 1536,
+  "forecasts_count": 19272,
+  "generated_at": "2026-10-24T20:15:25.598034+00:00"
+}

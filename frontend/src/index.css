@@ -1,0 +1,110 @@
+@import "tailwindcss";
+@import "./styles/motion.css";
+
+@theme {
+  --color-bg: #FAFAF7;
+  --color-surface: #FFFFFF;
+  --color-surface-subtle: #F4F4EF;
+  --color-surface-dim: #d1dbe8;
+  --color-surface-bright: #f7f9ff;
+  --color-surface-container-lowest: #ffffff;
+  --color-surface-container-low: #edf4ff;
+  --color-surface-container: #e4effd;
+  --color-surface-container-high: #dfe9f7;
+  --color-surface-container-highest: #d9e3f1;
+  --color-border: #E5E5E0;
+  --color-border-strong: #CFCFC8;
+  --color-text: #1F2933;
+  --color-text-muted: #5F6B76;
+  --color-text-disabled: #9AA3AB;
+  --color-accent-50: #EEF3F8;
+  --color-accent-100: #D9E5F0;
+  --color-accent-200: #B3CBE0;
+  --color-accent-500: #2F5D8A;
+  --color-accent-600: #264C71;
+  --color-accent-700: #1E3C5A;
+  --color-primary: #104571;
+  --color-primary-container: #2f5d8a;
+  --color-on-primary: #ffffff;
+  --color-on-primary-container: #b3d5ff;
+  --color-data-forecast: #2F5D8A;
+  --color-data-actual: #1F2933;
+  --color-data-shortfall: #C2571A;
+  --color-data-shortfall-text: #9A4311;
+  --color-data-surplus: #2E7D6B;
+  --color-data-buffer-band: rgba(47, 93, 138, 0.12);
+  --color-data-vintage: #B8BEC4;
+  --color-success: #2E7D6B;
+  --color-warning-fill: #B7791F;
+  --color-warning-text: #8A5A00;
+  --color-error: #B42318;
+  --color-error-container: #ffdad6;
+  --color-scrim: rgba(31, 41, 51, 0.40);
+
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-code: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  /* Layout Spacing Tokens */
+  --spacing-margin: 1.5rem;
+  --spacing-margin-desktop: 2.5rem;
+  --spacing-gap: 1rem;
+  --spacing-gap-desktop: 1.5rem;
+  --spacing-space-xs: 0.25rem;
+  --spacing-space-sm: 0.5rem;
+  --spacing-space-md: 1rem;
+  --spacing-space-lg: 1.5rem;
+  --spacing-space-xl: 2rem;
+}
+
+@layer base {
+  html, body {
+    margin: 0;
+    padding: 0;
+    background-color: #FAFAF7;
+    color: #1F2933;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Accessible focus indicators: instant, never animated */
+  :focus-visible {
+    outline: 2px solid #2F5D8A;
+    outline-offset: 2px;
+    transition: none;
+  }
+  :focus:not(:focus-visible) {
+    outline: none;
+  }
+
+  ::selection {
+    background: #D9E5F0;
+    color: #104571;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Safe area padding for mobile notches */
+  .pb-safe {
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  .pt-safe {
+    padding-top: env(safe-area-inset-top, 0px);
+  }
+}
+
+/* Tabular figures for reliable vertical alignment of numbers */
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Hide scrollbar for horizontal chip containers while allowing scroll */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}

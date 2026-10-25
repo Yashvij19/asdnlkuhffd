@@ -1,0 +1,61 @@
+[build-system]
+requires = ["setuptools>=68.0.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "wind-forecast-monitor"
+version = "0.1.0"
+description = "UK Day-Ahead Wind Generation Forecast Monitor (Elexon FUELHH & WINDFOR)"
+authors = [{ name = "Anonymous Developer" }]
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "fastapi>=0.115.0",
+    "uvicorn[standard]>=0.30.0",
+    "pydantic>=2.8.0",
+    "pydantic-settings>=2.4.0",
+    "sqlalchemy>=2.0.32",
+    "pandas>=2.2.0",
+    "numpy>=1.26.0",
+    "httpx>=0.27.0",
+    "tenacity>=8.5.0",
+    "structlog>=24.4.0",
+    "slowapi>=0.1.9",
+    "python-dateutil>=2.9.0",
+    "pytz>=2024.1",
+    "pyarrow>=17.0.0",
+    "fastparquet>=2024.5.0",
+    "python-dotenv>=1.0.1",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.3.0",
+    "pytest-asyncio>=0.23.0",
+    "respx>=0.21.1",
+    "hypothesis>=6.111.0",
+    "ruff>=0.5.5",
+    "mypy>=1.11.0",
+]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "W", "UP", "B", "C4"]
+ignore = ["E501"]
+
+[tool.mypy]
+python_version = "3.11"
+strict = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+ignore_missing_imports = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = "test_*.py"
+python_functions = "test_*"
+pythonpath = ["."]
+asyncio_mode = "auto"

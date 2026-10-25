@@ -1,0 +1,12 @@
+{
+  "name": "wind-generation-forecast-monitor",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Day-Ahead Wind Generation Forecast Decision Desk for GB Wholesale Power Markets",
+  "scripts": {
+    "build": "cd frontend && npm install && npm run build",
+    "build:frontend": "cd frontend && npm run build",
+    "dev:frontend": "cd frontend && npm run dev",
+    "lint:frontend": "cd frontend && npm run lint"
+  }
+}

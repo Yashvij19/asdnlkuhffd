@@ -1,0 +1,25 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    environment:
+      - APP_ENV=production
+      - PORT=8000
+      - DATABASE_URL=sqlite:////app/data/app.db
+      - LOG_LEVEL=INFO
+      - RATE_LIMIT=120/minute
+      - DECISION_MONTH_START=2026-01-01
+      - DECISION_MONTH_END=2026-01-31
+      - DEFAULT_CUTOFF=09:00
+      - TIMEZONE=Europe/London
+    volumes:
+      - app-data:/app/data
+    security_opt:
+      - "no-new-privileges:true"
+    restart: unless-stopped
+
+volumes:
+  app-data:
